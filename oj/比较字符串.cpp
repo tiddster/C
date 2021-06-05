@@ -33,7 +33,7 @@ int main(void){
 		}
 	}
 	for(int i=0; i<n; i++){
-    	printf("%s\n",string[i]);
+    	printf("%s  ",string[i]);
 	}
     
 }
