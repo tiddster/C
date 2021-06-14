@@ -64,3 +64,16 @@ DATA *FindLast(DATA *head, int last){
 	}
 	return D;
 } 
+
+DATA *Insert(DATA *head, int index){
+	DATA *preD, *pD;
+	pD = (DATA*)malloc(sizeof(DATA));
+	scanf("%d",&*pD->dta);
+	
+	preD = FindList(head, index);
+	if(preD != NULL){
+		preD->next = pD;
+		pD->next = preD->next;
+	} else 
+		printf("There is no such node\n");
+}
