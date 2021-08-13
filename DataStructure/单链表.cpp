@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include <time.h>
 #define ERROR 0
 #define OK  1
 
@@ -8,7 +9,7 @@ typedef int ElemType;
 
 typedef struct Node{
 	ElemType data;
-	struct Node next; 
+	struct Node *next; 
 }Node;
 
 typedef struct Node *LinkList;
@@ -16,12 +17,18 @@ typedef struct Node *LinkList;
 Status GetElem(LinkList L, int i, ElemType *e);
 Status ListInsert(LinkList *L, int i,ElemType e);
 Status ListDelete(LinkList *L, int i,ElemType e);
+void CreateList(LinkList *L, int n); 
+void ClearList(LinkList *L);
 
 int main(void){
-	LinkList *head;
-	LinkList L;
-	L.data = 1;
-	head->next = L;
+	LinkList *head = NULL;
+	LinkList p = (LinkList)malloc(sizeof(Node));
+	CreateList(head, 8);
+	p = (*head)->next;
+	while(p){
+		printf("%d", p->data);
+		p = p->next;
+	}
 }
 
 Status GetElem(LinkList L, int i, ElemType *e){
@@ -66,4 +73,28 @@ Status ListDelete(LinkList *L, int i){
 	p->next = waitDelete->next;
 	free(waitDelete);
 	return OK;
+}
+
+void CreateList(LinkList *L, int n){
+	LinkList p,r;
+	*L = (LinkList)malloc(sizeof(Node));
+	r = *L;
+	for(int i=0; i<n; i++){
+		p = (Node*)malloc(sizeof(Node));
+		scanf("%d",&p->data);
+		r->next = p;
+		r = p;
+		free(p);
+	}
+}
+
+void ClearList(LinkList *L){
+	LinkList p,q;
+	p = (*L)->next;
+	while(p){
+		q = p->next;
+		free(p);
+		p =q;
+	}
+	(*L)->next= NULL;
 }
