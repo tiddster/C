@@ -12,7 +12,8 @@ typedef struct TNode
 void CreateTree(TNode *T);
 
 int main(void){
-
+    TNode *t = (TNode*)malloc(sizeof(TNode));
+    CreateTree(t);
 }
 
 void CreateTree(TNode *T){
